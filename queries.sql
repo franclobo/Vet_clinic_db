@@ -13,3 +13,10 @@ SELECT AVG(weight_kg) FROM public.animals;
 SELECT neutered, MAX(escape_attempts) FROM public.animals GROUP BY neutered;
 SELECT MIN(weight_kg), MAX(weight_kg) FROM public.animals;
 SELECT species, AVG(escape_attempts) FROM public.animals WHERE date_of_birth BETWEEN '01/01/1990' AND '31/12/2000' GROUP BY species;
+
+SELECT full_name, name FROM public.owners JOIN public.animals  ON owners_id = owners.id WHERE full_name = 'Melody Pond';
+SELECT animals.name, species.name FROM public.animals JOIN public.species ON species_id = species.id WHERE species_id = '30';
+SELECT full_name, name FROM public.owners LEFT JOIN public.animals  ON owners_id = owners.id;
+SELECT species.name, COUNT(animals.name) FROM public.animals JOIN public.species ON species_id = species.id GROUP BY species.name;
+SELECT full_name, name FROM public.owners JOIN public.animals  ON owners_id = owners.id WHERE full_name = 'Jennifer Orwell';
+SELECT full_name, COUNT(name) FROM public.owners JOIN public.animals  ON owners_id = owners.id GROUP BY full_name HAVING COUNT(name)>2;

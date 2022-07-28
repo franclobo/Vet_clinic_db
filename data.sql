@@ -28,3 +28,51 @@ INSERT INTO public.animals (name, date_of_birth, escape_attempts, neutered, weig
 'Blossom', '13/10/1998', '3', true, '17')returning id;
 INSERT INTO public.animals (name, date_of_birth, escape_attempts, neutered, weight_kg) VALUES (
 'Ditto', '14/05/2022', '4', true, '22')returning id;
+
+-- Owners
+
+INSERT INTO public.owners (full_name, age) VALUES (
+'Sam Smith'::text, '34'::integer)
+ returning id;
+INSERT INTO public.owners (full_name, age) VALUES (
+'Jennifer Orwell'::text, '19'::integer)
+ returning id;
+INSERT INTO public.owners (full_name, age) VALUES (
+'Bob'::text, '45'::integer)
+ returning id;
+INSERT INTO public.owners (full_name, age) VALUES (
+'Melody Pond'::text, '77'::integer)
+ returning id;
+INSERT INTO public.owners (full_name, age) VALUES (
+'Dean Winchester'::text, '14'::integer)
+ returning id;
+ INSERT INTO public.owners (full_name, age) VALUES (
+'Jodie Whittaker'::text, '38'::integer)
+ returning id;
+
+BEGIN;
+UPDATE public.animals SET owners_id = '24'::integer WHERE id = 13;
+UPDATE public.animals SET owners_id = '25'::integer WHERE id = 14;
+UPDATE public.animals SET owners_id = '25'::integer WHERE id = 15;
+UPDATE public.animals SET owners_id = '26'::integer WHERE id = 16;
+UPDATE public.animals SET owners_id = '27'::integer WHERE id = 17;
+UPDATE public.animals SET owners_id = '26'::integer WHERE id = 18;
+UPDATE public.animals SET owners_id = '27'::integer WHERE id = 19;
+UPDATE public.animals SET owners_id = '28'::integer WHERE id = 20;
+UPDATE public.animals SET owners_id = '28'::integer WHERE id = 21;
+UPDATE public.animals SET owners_id = '27'::integer WHERE id = 22;
+COMMIT;
+
+ --Species
+
+ INSERT INTO public.species (name) VALUES (
+'Pokemon'::text)
+ returning id;
+INSERT INTO public.species (name) VALUES (
+'Digimon'::text)
+ returning id;
+
+BEGIN;
+UPDATE public.animals SET species_id = '31'::integer WHERE name LIKE '%mon';
+UPDATE public.animals SET species_id = '30'::integer WHERE species_id IS NULL;
+COMMIT;
