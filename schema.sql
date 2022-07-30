@@ -87,3 +87,97 @@ add constraint fk_owners foreign key (owners_id) references owners (id)
 
 ALTER TABLE public.animals
 add constraint fk_species foreign key (species_id) references species (id)
+
+-- Table: public.vets
+
+-- DROP TABLE IF EXISTS public.vets;
+
+CREATE TABLE IF NOT EXISTS public.vets
+(
+    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    name text COLLATE pg_catalog."default",
+    age integer,
+    date_of_graduation date,
+    CONSTRAINT vets_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.vets
+    OWNER to postgres;
+
+COMMENT ON TABLE public.vets
+    IS 'Create vet table';
+
+-- Table: public.specializations
+
+-- DROP TABLE IF EXISTS public.specializations;
+
+CREATE TABLE IF NOT EXISTS public.specializations
+(
+    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    name text COLLATE pg_catalog."default",
+    species_id integer NOT NULL,
+    vets_id integer NOT NULL
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.specializations
+    OWNER to postgres;
+
+COMMENT ON TABLE public.specializations
+    IS 'Create specializations table';
+
+-- Table: public.visits
+
+-- DROP TABLE IF EXISTS public.visits;
+
+CREATE TABLE IF NOT EXISTS public.visits
+(
+    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    name text COLLATE pg_catalog."default",
+    animals_id integer NOT NULL,
+    vets_id integer NOT NULL,
+    date_of_visits date
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.visits
+    OWNER to postgres;
+
+COMMENT ON TABLE public.visits
+    IS 'Create visits table';
+
+-- Table specializations
+
+ALTER TABLE IF EXISTS public.specializations
+    ADD CONSTRAINT fk_species FOREIGN KEY (species_id)
+    REFERENCES public.species (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.specializations
+    ADD CONSTRAINT fk_vets FOREIGN KEY (vets_id)
+    REFERENCES public.vets (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+--Table visits
+
+ALTER TABLE IF EXISTS public.visits
+    ADD CONSTRAINT fk_animals FOREIGN KEY (animals_id)
+    REFERENCES public.animals (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.visits
+    ADD CONSTRAINT fk_vets FOREIGN KEY (vets_id)
+    REFERENCES public.vets (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
