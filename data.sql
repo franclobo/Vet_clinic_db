@@ -76,3 +76,104 @@ BEGIN;
 UPDATE public.animals SET species_id = '31'::integer WHERE name LIKE '%mon';
 UPDATE public.animals SET species_id = '30'::integer WHERE species_id IS NULL;
 COMMIT;
+
+--Vets
+
+INSERT INTO public.vets (
+name, age, date_of_graduation) VALUES (
+'William Tatche'::text, '45'::integer, '23/04/2000'::date)
+ returning id;
+ INSERT INTO public.vets (
+name, age, date_of_graduation) VALUES (
+'Maisy Smith'::text, '26'::integer, '17/01/2019'::date)
+ returning id;
+ INSERT INTO public.vets (
+name, age, date_of_graduation) VALUES (
+'Stephanie Mendez'::text, '64'::integer, '04/05/1981'::date)
+ returning id;
+INSERT INTO public.vets (
+name, age, date_of_graduation) VALUES (
+'Jack Harkness'::text, '38'::integer, '08/01/2008'::date)
+ returning id;
+
+ -- Specializations
+
+BEGIN;
+INSERT INTO public.specializations (species_id, vets_id) VALUES (
+'30'::integer, '32'::integer)
+ returning id;
+INSERT INTO public.specializations (species_id, vets_id) VALUES (
+'30'::integer, '34'::integer)
+ returning id;
+INSERT INTO public.specializations (species_id, vets_id) VALUES (
+'31'::integer, '34'::integer)
+ returning id;
+INSERT INTO public.specializations (species_id, vets_id) VALUES (
+'31'::integer, '35'::integer)
+ returning id;
+COMMIT;
+
+--Visits
+
+BEGIN;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('13'::integer, '32'::integer, '24/05/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('13'::integer, '34'::integer, '22/07/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('14'::integer, '35'::integer, '02/02/2021'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('15'::integer, '33'::integer, '05/01/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('15'::integer, '33'::integer, '08/03/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('15'::integer, '33'::integer, '14/05/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('16'::integer, '34'::integer, '04/05/2021'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('17'::integer, '35'::integer, '24/02/2021'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('18'::integer, '33'::integer, '21/12/2019'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('18'::integer, '32'::integer, '10/08/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('18'::integer, '33'::integer, '07/04/2021'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('19'::integer, '34'::integer, '29/09/2019'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('20'::integer, '35'::integer, '03/10/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('20'::integer, '35'::integer, '04/11/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('21'::integer, '33'::integer, '24/01/2019'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('21'::integer, '33'::integer, '15/05/2019'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('21'::integer, '33'::integer, '27/02/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('21'::integer, '33'::integer, '03/08/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('22'::integer, '34'::integer, '24/05/2020'::date)
+ returning id;
+INSERT INTO public.visits (
+animals_id, vets_id, date_of_visits) VALUES ('22'::integer, '32'::integer, '11/01/2021'::date)
+ returning id;
+COMMIT;
