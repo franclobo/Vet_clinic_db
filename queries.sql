@@ -22,8 +22,9 @@ SELECT full_name, name FROM public.owners JOIN public.animals  ON owners_id = ow
 SELECT full_name, COUNT(name) FROM public.owners JOIN public.animals  ON owners_id = owners.id GROUP BY full_name HAVING COUNT(name)>2;
 
 --Who was the last animal seen by William Tatcher?
-SELECT name, MAX(date_of_visits) FROM public.vets JOIN public.visits ON vets.id = vets_id WHERE name =
- 'William Tatcher' GROUP BY name;
+SELECT vets.name, animals.name, date_of_visits FROM public.vets, public.animals
+ JOIN public.visits ON animals.id = animals_id WHERE vets.name = 'William Tatcher'
+ GROUP BY vets.name, animals.name, date_of_visits ORDER BY date_of_visits DESC LIMIT 1;
 --How many different animals did Stephanie Mendez see?
 SELECT vets.name, animals.name FROM public.vets, public.animals JOIN public.visits
  ON animals.id = animals_id WHERE vets.name = 'Stephanie Mendez' GROUP BY vets.name, animals.name;
