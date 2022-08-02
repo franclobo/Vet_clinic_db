@@ -53,3 +53,7 @@ SELECT vets.name, species.name, COUNT(species.id) count_species, COUNT(animals.s
 SELECT vets.name, species.name, COUNT(species.id) count_species, COUNT(animals.species_id) count_diferent_species
  FROM public.vets, public.species, public.animals JOIN public.visits ON animals.id = animals_id WHERE vets.name =
  'Maisy Smith' GROUP BY vets.name, species.name, species.id, animals.species_id HAVING species.id != species_id;
+
+SELECT COUNT(*) FROM visits where animal_id = 4;
+SELECT * FROM visits where vet_id = 2;
+SELECT * FROM owners where email = 'owner_18327@mail.com';
