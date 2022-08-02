@@ -181,3 +181,6 @@ ALTER TABLE IF EXISTS public.visits
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
