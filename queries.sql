@@ -57,3 +57,6 @@ SELECT vets.name, species.name, COUNT(species.id) count_species, COUNT(animals.s
 SELECT COUNT(*) FROM visits where animal_id = 4;
 SELECT * FROM visits where vet_id = 2;
 SELECT * FROM owners where email = 'owner_18327@mail.com';
+
+CREATE INDEX date_asc ON public.visits(date_of_visits ASC);
+CREATE INDEX date_desc ON public.visits(date_of_visits DESC);
