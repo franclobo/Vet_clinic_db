@@ -42,7 +42,7 @@ COMMIT;
 
 CREATE TABLE IF NOT EXISTS public.owners
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     full_name text COLLATE pg_catalog."default",
     age integer,
     CONSTRAINT owners_pkey PRIMARY KEY (id)
@@ -63,7 +63,7 @@ COMMENT ON TABLE public.owners
 
 CREATE TABLE IF NOT EXISTS public.species
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name text COLLATE pg_catalog."default",
     CONSTRAINT species_pkey PRIMARY KEY (id)
 )
@@ -94,7 +94,7 @@ add constraint fk_species foreign key (species_id) references species (id)
 
 CREATE TABLE IF NOT EXISTS public.vets
 (
-    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name text COLLATE pg_catalog."default",
     age integer,
     date_of_graduation date,
@@ -135,7 +135,7 @@ COMMENT ON TABLE public.specializations
 
 CREATE TABLE IF NOT EXISTS public.visits
 (
-    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name text COLLATE pg_catalog."default",
     animals_id integer NOT NULL,
     vets_id integer NOT NULL,
