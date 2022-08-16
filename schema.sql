@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS public.animals
 (
-    id integer NOT NULL DEFAULT nextval('animals_id_seq'::regclass),
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
     name text COLLATE pg_catalog."default" NOT NULL,
     date_of_birth date,
     escape_attempts integer,
